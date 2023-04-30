@@ -50,7 +50,7 @@ class InvoiceModal extends React.Component {
                 </h6>
               </div>
               <div className="text-end ms-4">
-                <h6 className="fw-bold mt-1 mb-2">Amount&nbsp;Due:</h6>
+                <h6 className="fw-bold mt-1 mb-2">Amount&nbsp;Paid:</h6>
                 <h5 className="fw-bold text-secondary">
                   {" "}
                   {this.props.currency} {this.props.total}
@@ -131,14 +131,14 @@ class InvoiceModal extends React.Component {
                       </td>
                     </tr>
                   )}
-                  {this.props.discountAmmount != 0.0 && (
+                  {this.props.commissionAmmount != 0.0 && (
                     <tr className="text-end">
                       <td></td>
                       <td className="fw-bold" style={{ width: "100px" }}>
-                        DISCOUNT
+                      Commission
                       </td>
                       <td className="text-end" style={{ width: "100px" }}>
-                        {this.props.currency} {this.props.discountAmmount}
+                        {this.props.currency} {this.props.commissionAmmount}
                       </td>
                     </tr>
                   )}
