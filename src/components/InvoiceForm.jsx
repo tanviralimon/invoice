@@ -276,7 +276,7 @@ class InvoiceForm extends React.Component {
                     <span className="fw-bold">commission:</span>
                     <span>
                       <span className="small ">
-                        ({this.state.commissionRate || 0})
+                        ({this.state.commissionRate || 0}-)
                       </span>
                       {this.state.currency}
                       {this.state.commissionAmmount || 0}
