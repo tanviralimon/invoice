@@ -160,7 +160,7 @@ class InvoiceForm extends React.Component {
                     </div>
                   </div>
                   <div className="d-flex flex-row align-items-center">
-                    <span className="fw-bold d-block me-2">Due&nbsp;Date:</span>
+                    <span className="fw-bold d-block me-2">Paid&nbsp;Date:</span>
                     <Form.Control
                       type="date"
                       value={this.state.dateOfIssue}
