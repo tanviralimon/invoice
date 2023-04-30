@@ -29,8 +29,8 @@ class InvoiceForm extends React.Component {
       subTotal: "0.00",
       taxRate: "",
       taxAmmount: "0.00",
-      discountRate: "",
-      discountAmmount: "0.00",
+      commissionRate: "",
+      commissionAmmount: "0.00",
     };
     this.state.items = [
       {
@@ -87,15 +87,15 @@ class InvoiceForm extends React.Component {
           () => {
             this.setState(
               {
-                discountAmmount: parseFloat(
-                  parseFloat(subTotal) * (this.state.discountRate / 100)
+                commissionAmmount: parseFloat(
+                  parseFloat(subTotal) * (this.state.commissionRate / 100)
                 ).toFixed(2),
               },
               () => {
                 this.setState({
                   total:
                     subTotal -
-                    this.state.discountAmmount +
+                    this.state.commissionAmmount +
                     parseFloat(this.state.taxAmmount),
                 });
               }
@@ -273,13 +273,13 @@ class InvoiceForm extends React.Component {
                     </span>
                   </div>
                   <div className="d-flex flex-row align-items-start justify-content-between mt-2">
-                    <span className="fw-bold">Discount:</span>
+                    <span className="fw-bold">commission:</span>
                     <span>
                       <span className="small ">
-                        ({this.state.discountRate || 0}%)
+                        ({this.state.commissionRate || 0}%)
                       </span>
                       {this.state.currency}
-                      {this.state.discountAmmount || 0}
+                      {this.state.commissionAmmount || 0}
                     </span>
                   </div>
                   <div className="d-flex flex-row align-items-start justify-content-between mt-2">
@@ -333,7 +333,7 @@ class InvoiceForm extends React.Component {
                 currency={this.state.currency}
                 subTotal={this.state.subTotal}
                 taxAmmount={this.state.taxAmmount}
-                discountAmmount={this.state.discountAmmount}
+                commissionAmmount={this.state.commissionAmmount}
                 total={this.state.total}
               />
               <Form.Group className="mb-3">
@@ -376,12 +376,12 @@ class InvoiceForm extends React.Component {
                 </InputGroup>
               </Form.Group>
               <Form.Group className="my-3">
-                <Form.Label className="fw-bold">Discount rate:</Form.Label>
+                <Form.Label className="fw-bold">commission rate:</Form.Label>
                 <InputGroup className="my-1 flex-nowrap">
                   <Form.Control
-                    name="discountRate"
+                    name="commissionRate"
                     type="number"
-                    value={this.state.discountRate}
+                    value={this.state.commissionRate}
                     onChange={(event) => this.editField(event)}
                     className="bg-white border"
                     placeholder="0.0"
