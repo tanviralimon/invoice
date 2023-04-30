@@ -29,7 +29,7 @@ class InvoiceForm extends React.Component {
       subTotal: "0.00",
       taxRate: "",
       taxAmmount: "0.00",
-      commissionAmmount: "0.00",
+      commissionAmount: "",
     };
     this.state.items = [
       {
@@ -42,14 +42,17 @@ class InvoiceForm extends React.Component {
     ];
     this.editField = this.editField.bind(this);
   }
+
   componentDidMount(prevProps) {
     this.handleCalculateTotal();
   }
+
   handleRowDel(items) {
     var index = this.state.items.indexOf(items);
     this.state.items.splice(index, 1);
     this.setState(this.state.items);
   }
+
   handleAddEvent(evt) {
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     var items = {
@@ -62,6 +65,7 @@ class InvoiceForm extends React.Component {
     this.state.items.push(items);
     this.setState(this.state.items);
   }
+
   handleCalculateTotal() {
     var items = this.state.items;
     var subTotal = 0;
@@ -86,17 +90,10 @@ class InvoiceForm extends React.Component {
           () => {
             this.setState(
               {
-                commissionAmmount: parseFloat(
-                  this.state.commissionAmmount
-                ).toFixed(2)
-              },
-              () => {
-                this.setState({
-                  total:
-                    subTotal -
-                    this.state.commissionAmmount +
-                    parseFloat(this.state.taxAmmount),
-                });
+                total:
+                  parseFloat(subTotal) +
+                  parseFloat(this.state.taxAmmount) -
+                  parseFloat(this.state.commissionAmount),
               }
             );
           }
@@ -104,6 +101,7 @@ class InvoiceForm extends React.Component {
       }
     );
   }
+
   onItemizedItemEdit(evt) {
     var item = {
       id: evt.target.id,
@@ -122,14 +120,16 @@ class InvoiceForm extends React.Component {
     this.setState({ items: newItems });
     this.handleCalculateTotal();
   }
+
   editField = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
-       });
+    });
     this.handleCalculateTotal();
   };
+
   onCurrencyChange = (selectedOption) => {
-    this.setState(selectedOption);
+    this.setState(selected Option);
   };
   openModal = (event) => {
     event.preventDefault();
