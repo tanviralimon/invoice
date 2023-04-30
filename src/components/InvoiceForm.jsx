@@ -91,7 +91,7 @@ class InvoiceForm extends React.Component {
                     parseFloat(subTotal) - (this.state.commissionRate)
                 ).toFixed(2)
               },
-              () => {
+              () -> {
                 this.setState({
                   total:
                     subTotal -
